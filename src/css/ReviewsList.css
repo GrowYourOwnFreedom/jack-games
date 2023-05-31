@@ -3,6 +3,7 @@
 	border-width: 4px;
 	border-style: solid;
 	border-radius: 20px;
+	display: flex;
 }
 .reviews-list {
 	border-color: white;
@@ -13,4 +14,11 @@
 ul {
 	list-style: none;
 	padding: 0;
+}
+.review-card:hover {
+	background-color:rgb(79, 79, 79);
+	cursor: pointer;
+}
+img {
+	width: 200px;
 }

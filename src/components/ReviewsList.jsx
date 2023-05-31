@@ -4,30 +4,23 @@ import "../css/ReviewsList.css"
 import { Link, useSearchParams } from "react-router-dom";
 
 export default function ReviewsList() {
-	const [reviews, setReviews] = useState([]);
+	const [reviews, setReviews] = useState(false);
     const [params, setParams ] = useSearchParams()
-    const categoriesQuery = params.get("category")
+    const categoriesQuery = params.get("category") ?? undefined
 
 
 
 	useEffect(() => {
-        if (categoriesQuery) {
-            fetchReviews(categoriesQuery).then((reviews) => {
-                console.log(reviews);
-                setReviews(reviews);
-            });
-        } else {
-            fetchReviews().then((reviews) => {
-                console.log(reviews);
-                setReviews(reviews);
-            });
-        }
+        fetchReviews({categoriesQuery}).then((reviews) => {
+            console.log(reviews);
+            setReviews(reviews);
+        });
 	}, [categoriesQuery]);
 
 	return (
 		<main className="reviews-list">
 			<h2>Reviews</h2>
-            {reviews.length === 0 ? 
+            {!reviews ?
             <h1>Loading....</h1> :
 			<ul>
 				{reviews.map((review) => {

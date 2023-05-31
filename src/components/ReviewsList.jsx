@@ -27,6 +27,8 @@ export default function ReviewsList() {
 	return (
 		<main className="reviews-list">
 			<h2>Reviews</h2>
+            {reviews.length === 0 ? 
+            <h1>Loading....</h1> :
 			<ul>
 				{reviews.map((review) => {
 					return (
@@ -40,6 +42,8 @@ export default function ReviewsList() {
 					);
 				})}
 			</ul>
+
+            }
 		</main>
 	);
 }

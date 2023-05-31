@@ -12,7 +12,6 @@ export default function ReviewsList() {
 
 	useEffect(() => {
         fetchReviews({categoriesQuery}).then((reviews) => {
-            console.log(reviews);
             setReviews(reviews);
         });
 	}, [categoriesQuery]);

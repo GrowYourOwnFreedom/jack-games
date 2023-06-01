@@ -13,7 +13,7 @@ export default function Nav() {
 		<nav className="navBar">
 			<Link className="link" to="/"> Home </Link>
 			{user && <button onClick={handleClick}>sign out</button> }
-			<span>nav link</span>
+			<Link className="link" to="/categories"> Review Categories </Link>
 		</nav>
 	);
 }

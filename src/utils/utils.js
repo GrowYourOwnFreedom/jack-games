@@ -35,3 +35,9 @@ export const patchCommentVotesByComment_id = (id,num) => {
 	return jacksGamesApi.patch(`/api/comments/${id}`,{inc_votes: num})
 
 }
+
+export const fetchCategories = () => {
+	return jacksGamesApi.get('/api/categories').then(({data:{categories}})=> {
+		return categories
+	} )
+}

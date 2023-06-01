@@ -17,6 +17,7 @@ export default function ReviewPage() {
 	const handleDownVoteClick = () => {};
 
 	return (
+		!review? <h2>Review Loading...!</h2> :
 		<>
 			<img className="display-img" src={review.review_img_url} alt="" />
 			<main className="review-display">
@@ -25,8 +26,8 @@ export default function ReviewPage() {
 					<p>{review.review_body}</p>
 					<div className="review-info">
 						<span> Category: {review.category} </span>
-						<span>  Designed by {review.designer} </span>
-                        <span>Comments : {review.comment_count}</span>
+						<span> Designed by {review.designer} </span>
+						<span>Comments : {review.comment_count}</span>
 					</div>
 				</div>
 				<div className="side-buttons">

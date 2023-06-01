@@ -31,4 +31,7 @@ export const fetchUserByUsername = (username)=> {
 		return user
 	})
 }
+export const patchCommentVotesByComment_id = (id,num) => {
+	return jacksGamesApi.patch(`/api/comments/${id}`,{inc_votes: num})
 
+}

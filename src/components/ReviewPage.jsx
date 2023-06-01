@@ -4,7 +4,7 @@ import {
 	fetchReviewByReview_id,
 	patchReviewVotesByReview_id,
 } from "../utils/utils";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../css/ReviewPage.css";
 import CommentCard from "./CommentCard";
 import { useContext } from "react";
@@ -26,6 +26,7 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
+	console.log(comments);
 
 	const handleReviewUpVoteClick = () => {
 		if (review.owner !== user.username) {
@@ -80,18 +81,19 @@ export default function ReviewPage() {
 				<div className="side-buttons">
 					<span className="username">@{review.owner} </span>
 					<span> votes:{review.votes} </span>
-					{user.username !== review.owner && (
+					{user.username !== review.owner && user && (
 						<button onClick={handleReviewUpVoteClick}>
 							upVote!
 						</button>
 					)}
-					{user.username !== review.owner && (
+					{user.username !== review.owner && user && (
 						<button onClick={handleReviewDownVoteClick}>
 							downVote :(
 						</button>
 					)}
 				</div>
 			</section>
+			{!user && <h3 className="username">Please <Link className="link" to={'/login'}>log in</Link>to vote on reviews!</h3>}
 			{patchError && (
 				<h3 className="patch-error">
 					Sorry, there seems to be a problem, please refresh and try
@@ -109,7 +111,7 @@ export default function ReviewPage() {
 								<CommentCard
 									key={comment.comment_id}
 									comment={comment}
-								/>
+								setComments={setComments}/>
 							);
 						})}
 					</ul>

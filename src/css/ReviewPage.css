@@ -55,3 +55,6 @@ button:hover {
     display: flex;
     justify-content: space-around;
 }
+.patch-error {
+    color: rgb(190, 58, 58);
+}

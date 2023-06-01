@@ -22,4 +22,8 @@ export const fetchCommentByReview_id = (id) => {
 	})
 
 }
+export const patchReviewVotesByReview_id = (id,num) => {
+	return jacksGamesApi.patch(`/api/reviews/${id}`,{inc_votes: num})
+
+}
 

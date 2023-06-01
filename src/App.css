@@ -4,3 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+.username{
+  color: rgb(255, 217, 0);
+}
+.link {
+  color: chartreuse;
+}
+.link:hover{
+  color: crimson;
+}

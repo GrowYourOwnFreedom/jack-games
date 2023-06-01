@@ -1,0 +1,29 @@
+.review-display {
+    display: flex;
+ 
+}
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: solid 5px white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.review-box{
+    border: solid 5px white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+button:hover {
+    cursor: pointer;
+}
+.display-img{
+    width: 500px;
+}
+.review-info{
+    display: flex;
+    justify-content: space-between;
+}

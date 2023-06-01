@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import { Route, Routes } from "react-router-dom";
 import ReviewsList from "./components/ReviewsList";
+import ReviewPage from "./components/ReviewPage";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 				<Nav/>
 				<Routes>
 					<Route path="/" element ={<ReviewsList/>}/>
+					<Route path="/:review_id" element ={<ReviewPage/>}/>
 
 				</Routes>
 			</section>

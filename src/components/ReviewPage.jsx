@@ -23,7 +23,6 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
-	console.log(comments);
 
 	const handleReviewUpVoteClick = () => {};
 	const handleReviewDownVoteClick = () => {};
@@ -85,7 +84,7 @@ export default function ReviewPage() {
 										>
 											downVote :(
 										</button>
-										{user === comment.author && (
+										{user.username === comment.author && (
 											<button
 												onClick={handleCommentDelete}
 											>
@@ -93,11 +92,13 @@ export default function ReviewPage() {
 											</button>
 										)}
 									</div>
+									<span>{comment.created_at}</span>
 								</li>
 							);
 						})}
 					</ul>
 				)}
+				{comments.length === 0 && <h3>No comments yet :( Be the first to make a comment!</h3>}
 			</section>
 		</main>
 	);

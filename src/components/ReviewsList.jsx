@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchReviews } from "../utils/utils";
 import "../css/ReviewsList.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import ReviewCard from "./ReviewCard";
 
 export default function ReviewsList() {
 	const [reviews, setReviews] = useState(false);
@@ -31,31 +32,7 @@ export default function ReviewsList() {
 				<ul>
 					{reviews.map((review) => {
 						return (
-							<li
-								key={review.review_id}
-								className="review-card"
-								onClick={() => {
-									handleClick(`/${review.review_id}`);
-								}}
-							>
-								<img src={review.review_img_url} alt="" />
-								<div>
-									<h3>{review.title}</h3>
-									<span className="username">
-										@{review.owner}{" "}
-									</span>
-									<span onClick={handleLinkClick}>
-										<Link
-											className="link"
-											to={`/?category=${review.category}`}
-										>
-											{" "}
-											category: {review.category}{" "}
-										</Link>
-									</span>
-									<span>votes: {review.votes}</span>
-								</div>
-							</li>
+							<ReviewCard key={review.review_id} review={review} />
 						);
 					})}
 				</ul>

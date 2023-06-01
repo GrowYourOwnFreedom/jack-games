@@ -10,11 +10,10 @@ import ReviewPage from "./components/ReviewPage";
 
 function App() {
 	const [user, setUser] = useState({
-		username: "mallionaire",
-		name: "haz",
-		avatar_url:
-			"https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg",
-	});
+		"username": "cooljmessy",
+		"name": "Peter Messy",
+		"avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002"
+		});
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			<section className="app">

@@ -8,14 +8,6 @@ export default function ReviewsList() {
 	const [reviews, setReviews] = useState(false);
 	const [params, setParams] = useSearchParams();
 	const categoriesQuery = params.get("category") ?? undefined;
-	const navigate = useNavigate();
-
-	const handleClick = (route) => {
-		navigate(route);
-	};
-	const handleLinkClick = (event) => {
-		event.stopPropagation();
-	};
 
 	useEffect(() => {
 		fetchReviews({ categoriesQuery }).then((reviews) => {

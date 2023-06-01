@@ -6,14 +6,11 @@ import Nav from "./components/Nav";
 import { Route, Routes } from "react-router-dom";
 import ReviewsList from "./components/ReviewsList";
 import ReviewPage from "./components/ReviewPage";
+import LoginPage from "./components/LoginPage";
 
 
 function App() {
-	const [user, setUser] = useState({
-		"username": "cooljmessy",
-		"name": "Peter Messy",
-		"avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002"
-		});
+	const [user, setUser] = useState(false);
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			<section className="app">
@@ -22,6 +19,7 @@ function App() {
 				<Routes>
 					<Route path="/" element ={<ReviewsList/>}/>
 					<Route path="/:review_id" element ={<ReviewPage/>}/>
+					<Route path="/login" element ={<LoginPage/>}/>
 
 				</Routes>
 			</section>

@@ -1,5 +1,12 @@
 .navBar{
+    display: flex;
+    justify-content: space-evenly;
     position: sticky;
-    top: 30px;
+    top: 100px;
     background-color: #242424;
+    font-size: 20px;
+}
+.navBar button {
+    font-size: 20px;
+
 }

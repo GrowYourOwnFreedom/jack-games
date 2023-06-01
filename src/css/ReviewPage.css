@@ -1,57 +1,59 @@
 .review-display {
-    display: flex;
- 
+	display: flex;
 }
 .side-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border: solid 5px white;
-    border-radius: 10px;
-    padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: solid 5px white;
+	border-radius: 10px;
+	padding: 10px;
 }
-.review-box{
-    border: solid 5px white;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+.review-box {
+	border: solid 5px white;
+	border-radius: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
 }
 button:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
-.display-img{
-    width: 500px;
+.display-img {
+	width: 500px;
 }
-.review-info{
-    display: flex;
-    justify-content: space-between;
+.review-info {
+	display: flex;
+	justify-content: space-between;
 }
 .comment-display {
-    display: flex;
-    flex-direction: column;
-    border: solid 5px white;
-    border-radius: 10px;
-    padding: 10px;
-    overflow-y: scroll;
-    max-height: 300px;
+	display: flex;
+	flex-direction: column;
+	border: solid 5px white;
+	border-radius: 10px;
+	padding: 10px;
+	overflow-y: scroll;
+	max-height: 600px;
 }
 .comment-display-title {
-    border: solid 5px white;
-    border-radius: 10px;
-    padding: 20px;
-    position: sticky;
-    top: -10px;
-    background-color: #242424;
+	border: solid 5px white;
+	border-radius: 10px;
+	padding: 20px;
+	position: sticky;
+	top: -10px;
+	background-color: #242424;
 }
 .comment-card {
-    display: flex;
-    flex-direction: column;
-    border: solid 5px white;
-    border-radius: 10px;
-    padding: 10px;
+	display: flex;
+	flex-direction: column;
+	border: solid 5px white;
+	border-radius: 10px;
+	padding: 10px;
 }
 .comment-buttons {
-    display: flex;
-    justify-content: space-around;
+	display: flex;
+	justify-content: space-around;
+}
+.patch-error {
+	color: rgb(190, 58, 58);
 }

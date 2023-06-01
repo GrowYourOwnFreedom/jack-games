@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import {
 	fetchCommentByReview_id,
 	fetchReviewByReview_id,
+	patchReviewVotesByReview_id,
 } from "../utils/utils";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../css/ReviewPage.css";
+import CommentCard from "./CommentCard";
 import { useContext } from "react";
 import { UserContext } from "../contexts/userContext";
 
@@ -14,6 +16,7 @@ export default function ReviewPage() {
 	const { review_id } = useParams();
 	const [review, setReview] = useState(false);
 	const [comments, setComments] = useState(false);
+	const [patchError, setPatchError] = useState(false);
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -23,12 +26,42 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
+	console.log(comments);
 
-	const handleReviewUpVoteClick = () => {};
-	const handleReviewDownVoteClick = () => {};
-	const handleCommentUpVoteClick = () => {};
-	const handleCommentDownVoteClick = () => {};
-	const handleCommentDelete = () => {};
+	const handleReviewUpVoteClick = () => {
+		if (review.owner !== user.username) {
+			setReview((currReview) => {
+				return { ...currReview, votes: currReview.votes + 1 };
+			});
+			patchReviewVotesByReview_id(review.review_id, 1)
+				.then(() => {
+					setPatchError(false);
+				})
+				.catch(() => {
+					setReview((currReview) => {
+						return { ...currReview, votes: currReview.votes - 1 };
+					});
+					setPatchError(true);
+				});
+		}
+	};
+	const handleReviewDownVoteClick = () => {
+		if (review.owner !== user.username) {
+			setReview((currReview) => {
+				return { ...currReview, votes: currReview.votes - 1 };
+			});
+			patchReviewVotesByReview_id(review.review_id, -1)
+				.then(() => {
+					setPatchError(false);
+				})
+				.catch(() => {
+					setReview((currReview) => {
+						return { ...currReview, votes: currReview.votes + 1 };
+					});
+					setPatchError(true);
+				});
+		}
+	};
 
 	return !review ? (
 		<h2>Review Loading...!</h2>
@@ -48,12 +81,25 @@ export default function ReviewPage() {
 				<div className="side-buttons">
 					<span className="username">@{review.owner} </span>
 					<span> votes:{review.votes} </span>
-					<button onClick={handleReviewUpVoteClick}>upVote!</button>
-					<button onClick={handleReviewDownVoteClick}>
-						downVote :(
-					</button>
+					{user.username !== review.owner && user && (
+						<button onClick={handleReviewUpVoteClick}>
+							upVote!
+						</button>
+					)}
+					{user.username !== review.owner && user && (
+						<button onClick={handleReviewDownVoteClick}>
+							downVote :(
+						</button>
+					)}
 				</div>
 			</section>
+			{!user && <h3 className="username">Please <Link className="link" to={'/login'}>log in</Link>to vote on reviews!</h3>}
+			{patchError && (
+				<h3 className="patch-error">
+					Sorry, there seems to be a problem, please refresh and try
+					again!
+				</h3>
+			)}
 			<section className="comment-display">
 				<h2 className="comment-display-title">Comments!</h2>
 				{!comments ? (
@@ -62,43 +108,17 @@ export default function ReviewPage() {
 					<ul>
 						{comments.map((comment) => {
 							return (
-								<li
-									className="comment-card"
+								<CommentCard
 									key={comment.comment_id}
-								>
-									<div>
-										<p>{comment.body}</p>
-									</div>
-									<div className="comment-buttons">
-										<span className="username">
-											@{comment.author}
-										</span>
-										<span>Votes:{comment.votes}</span>
-										<button
-											onClick={handleCommentUpVoteClick}
-										>
-											upVote!
-										</button>
-										<button
-											onClick={handleCommentDownVoteClick}
-										>
-											downVote :(
-										</button>
-										{user.username === comment.author && (
-											<button
-												onClick={handleCommentDelete}
-											>
-												delete comment!
-											</button>
-										)}
-									</div>
-									<span>{comment.created_at}</span>
-								</li>
+									comment={comment}
+								setComments={setComments}/>
 							);
 						})}
 					</ul>
 				)}
-				{comments.length === 0 && <h3>No comments yet :( Be the first to make a comment!</h3>}
+				{comments.length === 0 && (
+					<h3>No comments yet :( Be the first to make a comment!</h3>
+				)}
 			</section>
 		</main>
 	);

@@ -15,10 +15,18 @@ ul {
 	list-style: none;
 	padding: 0;
 }
+img {
+	width: 200px;
+}
+.reviews-info-buttons {
+	display: flex;
+	justify-content: space-evenly;
+}
+.reviews-info{
+	display: flex;
+	flex-direction: column;
+}
 .review-card:hover {
 	background-color:rgb(79, 79, 79);
 	cursor: pointer;
-}
-img {
-	width: 200px;
 }

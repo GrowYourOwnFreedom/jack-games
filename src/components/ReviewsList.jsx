@@ -39,21 +39,27 @@ export default function ReviewsList() {
 								}}
 							>
 								<img src={review.review_img_url} alt="" />
-								<div>
-									<h3>{review.title}</h3>
-									<span className="username">
-										@{review.owner}{" "}
-									</span>
-									<span onClick={handleLinkClick}>
-										<Link
-											className="link"
-											to={`/?category=${review.category}`}
-										>
-											{" "}
-											category: {review.category}{" "}
-										</Link>
-									</span>
-									<span>votes: {review.votes}</span>
+								<div className="reviews-info">
+									<div>
+										<h3>{review.title}</h3>
+									</div>
+									<div className="reviews-info-buttons">
+										<span className="username">
+											@{review.owner}
+										</span>
+										<span onClick={handleLinkClick}>
+											<Link
+												className="link"
+												to={`/?category=${review.category}`}
+											>
+												category: {review.category}
+											</Link>
+										</span>
+										<span>votes: {review.votes}</span>
+										<span>
+											comments:{review.comment_count}
+										</span>
+									</div>
 								</div>
 							</li>
 						);

@@ -27,3 +27,31 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
+.comment-display {
+    display: flex;
+    flex-direction: column;
+    border: solid 5px white;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+.comment-display-title {
+    border: solid 5px white;
+    border-radius: 10px;
+    padding: 20px;
+    position: sticky;
+    top: -10px;
+    background-color: #242424;
+}
+.comment-card {
+    display: flex;
+    flex-direction: column;
+    border: solid 5px white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.comment-buttons {
+    display: flex;
+    justify-content: space-around;
+}

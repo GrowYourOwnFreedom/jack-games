@@ -10,9 +10,16 @@ export const fetchReviews = ({categoriesQuery}) => {
 	});
 };
 
-export const FetchReviewByReview_id = (id) => {
+export const fetchReviewByReview_id = (id) => {
 	return jacksGamesApi.get(`/api/reviews/${id}`).then(({data:{review}})=> {
 		return review
 	})
+}
+
+export const fetchCommentByReview_id = (id) => {
+	return jacksGamesApi.get(`/api/reviews/${id}/comments`).then(({data:{comments}}) => {
+		return comments
+	})
+
 }
 

@@ -3,6 +3,7 @@ import {
 	fetchCommentByReview_id,
 	fetchReviewByReview_id,
 	patchReviewVotesByReview_id,
+	postCommentByReview_id,
 } from "../utils/utils";
 import { Link, useParams } from "react-router-dom";
 import "../css/ReviewPage.css";
@@ -17,6 +18,7 @@ export default function ReviewPage() {
 	const [review, setReview] = useState(false);
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
+	const [newComment, setNewComment] = useState("");
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -26,7 +28,6 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
-	console.log(comments);
 
 	const handleReviewUpVoteClick = () => {
 		if (review.owner !== user.username) {
@@ -63,6 +64,27 @@ export default function ReviewPage() {
 		}
 	};
 
+	const handleChange = (event) => {
+		setNewComment(event.target.value);
+	};
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const body = { username: user.username, body: newComment };
+		const tempComment = {
+			author: user.username,
+			body: newComment,
+			votes: 0,
+			created_at: Date(),
+		};
+
+		setComments((currComments) => {
+			return [tempComment, ...currComments];
+		});
+		postCommentByReview_id(review.review_id, body).catch(()=> {
+
+		})
+	};
+
 	return !review ? (
 		<h2>Review Loading...!</h2>
 	) : (
@@ -93,7 +115,15 @@ export default function ReviewPage() {
 					)}
 				</div>
 			</section>
-			{!user && <h3 className="username">Please <Link className="link" to={'/login'}>log in</Link>to vote on reviews!</h3>}
+			{!user && (
+				<h3 className="username">
+					Please{" "}
+					<Link className="link" to={"/login"}>
+						log in
+					</Link>
+					to vote on reviews!
+				</h3>
+			)}
 			{patchError && (
 				<h3 className="patch-error">
 					Sorry, there seems to be a problem, please refresh and try
@@ -102,6 +132,28 @@ export default function ReviewPage() {
 			)}
 			<section className="comment-display">
 				<h2 className="comment-display-title">Comments!</h2>
+				{user ? (
+					<form onSubmit={handleSubmit}>
+						<label htmlFor="comment-box"> New Comment:</label>
+						<textarea
+							onChange={handleChange}
+							value={newComment}
+							name=""
+							id="comment-box"
+							cols="30"
+							rows="10"
+						></textarea>
+						<button>submit</button>
+					</form>
+				) : (
+					<h3 className="username">
+						Please{" "}
+						<Link className="link" to={"/login"}>
+							log in
+						</Link>
+						to comment on reviews!
+					</h3>
+				)}
 				{!comments ? (
 					<h2>Comments Loading...!</h2>
 				) : (
@@ -111,7 +163,8 @@ export default function ReviewPage() {
 								<CommentCard
 									key={comment.comment_id}
 									comment={comment}
-								setComments={setComments}/>
+									setComments={setComments}
+								/>
 							);
 						})}
 					</ul>

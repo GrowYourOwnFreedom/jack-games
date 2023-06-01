@@ -22,16 +22,16 @@ export default function CommentCard({ comment: { comment_id, body, author, votes
 											@{author}
 										</span>
 										<span>Votes:{votes}</span>
-										<button
+										{user.username !== author &&<button
 											onClick={handleCommentUpVoteClick}
 										>
 											upVote!
-										</button>
-										<button
+										</button>}
+										{user.username !== author &&<button
 											onClick={handleCommentDownVoteClick}
 										>
 											downVote :(
-										</button>
+										</button>}
 										{user.username === author && (
 											<button
 												onClick={handleCommentDelete}

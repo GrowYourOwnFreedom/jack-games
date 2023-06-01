@@ -26,4 +26,9 @@ export const patchReviewVotesByReview_id = (id,num) => {
 	return jacksGamesApi.patch(`/api/reviews/${id}`,{inc_votes: num})
 
 }
+export const fetchUserByUsername = (username)=> {
+	return jacksGamesApi.get(`/api/users/${username}`).then(({data:{user}}) => {
+		return user
+	})
+}
 

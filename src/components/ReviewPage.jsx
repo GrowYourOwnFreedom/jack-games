@@ -80,9 +80,13 @@ export default function ReviewPage() {
 		setComments((currComments) => {
 			return [tempComment, ...currComments];
 		});
-		postCommentByReview_id(review.review_id, body).catch(()=> {
-
-		})
+		postCommentByReview_id(review.review_id, body).catch(() => {
+			setComments((currComments) => {
+				const tempComments = [...currComments];
+				tempComments.shift();
+				return tempComments;
+			});
+		});
 	};
 
 	return !review ? (

@@ -19,6 +19,7 @@ export default function ReviewPage() {
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
+	const [ deleteError, setDeleteError ] = useState(false)
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -159,6 +160,7 @@ export default function ReviewPage() {
 						to comment on reviews!
 					</h3>
 				)}
+				{deleteError && <h3 className="patch-error">Sorry comment not deleted, please refresh and try again!</h3>}
 				{!comments ? (
 					<h2>Comments Loading...!</h2>
 				) : (
@@ -169,6 +171,8 @@ export default function ReviewPage() {
 									key={comment.comment_id}
 									comment={comment}
 									setComments={setComments}
+									deleteError={deleteError}
+									setDeleteError={setDeleteError}
 								/>
 							);
 						})}

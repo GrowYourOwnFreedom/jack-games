@@ -3,12 +3,11 @@ import { UserContext } from "../contexts/userContext";
 import { deleteCommentByComment_id, patchCommentVotesByComment_id } from "../utils/utils";
 import { Link } from "react-router-dom";
 
-export default function CommentCard({setComments, comment: { comment_id, body, author, votes, created_at}}) {
+export default function CommentCard({ deleteError, setDeleteError ,setComments, comment: { comment_id, body, author, votes, created_at}}) {
 	
 	const { user } = useContext(UserContext);
 	const [patchError, setPatchError ] = useState(false)
-	const [ deleteError, setDeleteError ] = useState(false)
-	const [deletedComment, setDeletedComment ] = useState(false)
+	
 
 	const handleCommentUpVoteClick = () => {
 		if (author !== user.username) {
@@ -77,19 +76,14 @@ export default function CommentCard({setComments, comment: { comment_id, body, a
 	const handleCommentDelete = () => {
 		setDeleteError(false)
 		setComments(currComments => {
-			// setDeletedComment(currComments)
 			const newComments =currComments.filter(comment => {
 				return comment.comment_id !== comment_id})
 			return newComments
 		})
 		deleteCommentByComment_id(comment_id).catch(()=> {
-			// setComments(deletedComment)
-			console.log("in catch");
 			setDeleteError(true)
 		})
 	};
-	console.log(deleteError);
-
 							return (
 								<li
 									className="comment-card"
@@ -122,7 +116,7 @@ export default function CommentCard({setComments, comment: { comment_id, body, a
 										)}
 										{!user && <h3 className="username">Please <Link className="link" to={'/login'}>log in</Link>  to vote on comments!</h3>}
 									</div>
-									{deleteError && <h3 className="patch-error">Sorry comment not deleted, please refresh and try again!</h3>}
+									
 									{patchError && (
 				<h3 className="patch-error">
 					Sorry, your vote could not be patched, please refresh and try

@@ -75,6 +75,7 @@ export default function ReviewPage() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if(!newComment) {
+			console.log("in submit prevention");
 			setSubmitError("Sorry, comments must contain information...")
 			return
 		}

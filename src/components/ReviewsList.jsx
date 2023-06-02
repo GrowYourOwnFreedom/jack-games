@@ -40,14 +40,8 @@ export default function ReviewsList() {
 				name="sort_by"
 				id="sort-by"
 			>
-				<option value="owner">owner</option>
-				<option value="title">title</option>
-				<option value="review_id">review_id</option>
-				<option value="category">category</option>
-				<option value="review_img_url">review_img_url</option>
 				<option value="created_at">created_at</option>
 				<option value="votes">votes</option>
-				<option value="designer">designer</option>
 				<option value="comment_count">comment_count</option>
 			</select>
 			<label htmlFor="order">order</label>

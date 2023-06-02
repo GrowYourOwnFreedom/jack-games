@@ -38,7 +38,7 @@ export default function ReviewCard({review:{ review_id, review_img_url, title, o
                         comments:{comment_count}
                     </span>
                 </div>
-                <span>{created_at}</span>
+                <span>{new Date(created_at).toUTCString()}</span>
             </div>
         </li>
     );

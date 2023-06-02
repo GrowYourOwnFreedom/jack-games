@@ -2,8 +2,9 @@
     display: flex;
     justify-content: space-evenly;
     position: sticky;
-    top: 100px;
-    background-color: #242424;
+    top: 
+    0px;
+    background-color: #3f3f3f;
     font-size: 20px;
 }
 .navBar button {

@@ -4,6 +4,7 @@
 	border-style: solid;
 	border-radius: 20px;
 	display: flex;
+	width: 100%;
 }
 .reviews-list {
 	border-color: white;
@@ -15,8 +16,9 @@ ul {
 	list-style: none;
 	padding: 0;
 }
-img {
-	width: 200px;
+.review-card-image {
+	width: 33%;
+	border-radius: 20px;
 }
 .reviews-info-buttons {
 	display: flex;

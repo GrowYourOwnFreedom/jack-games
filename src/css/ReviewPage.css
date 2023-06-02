@@ -20,7 +20,7 @@ button:hover {
 	cursor: pointer;
 }
 .display-img {
-	width: 500px;
+	width: 100%;
 }
 .review-info {
 	display: flex;

@@ -16,7 +16,7 @@ export default function ReviewCard({review:{ review_id, review_img_url, title, o
                 handleClick(`/${review_id}`);
             }}
         >
-            <img src={review_img_url} alt="" />
+            <img className="review-card-image" src={review_img_url} alt="" />
             <div className="reviews-info">
                 <div>
                     <h3>{title}</h3>

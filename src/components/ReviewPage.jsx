@@ -23,7 +23,6 @@ export default function ReviewPage() {
 	const [ deleteError, setDeleteError ] = useState(false)
 	const [ submitError, setSubmitError ] = useState(false)
 
-	const [ commentError, setCommentError ] = useState(false)
 
 
 	useEffect(() => {
@@ -75,7 +74,7 @@ export default function ReviewPage() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(newComment.length > 0) {
+		if(newComment.length === 0) {
 			setSubmitError("Sorry, comments must contain information...")
 			return
 		}
@@ -151,7 +150,7 @@ export default function ReviewPage() {
 			)}
 			<section className="comment-display">
 				<h2 className="comment-display-title">Comments!</h2>
-				{commentError && <h3 className="post-error">Sorry your comment was not posted, please refresh and try again!</h3>}
+				{submitError && <h3 className="post-error">{submitError}</h3>}
 				{user ? (
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="comment-box"> New Comment:</label>

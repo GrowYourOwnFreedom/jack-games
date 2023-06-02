@@ -47,3 +47,6 @@ export const postCommentByReview_id = (id,body) => {
 	return jacksGamesApi.post(`/api/reviews/${id}/comments`,body)
 }
 
+export const deleteCommentByComment_id =  (id) => {
+	return jacksGamesApi.delete(`/api/comments/${id}`)
+}

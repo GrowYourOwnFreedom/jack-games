@@ -19,7 +19,12 @@ export default function ReviewPage() {
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
+
+	const [ deleteError, setDeleteError ] = useState(false)
+	const [ submitError, setSubmitError ] = useState(false)
+
 	const [ commentError, setCommentError ] = useState(false)
+
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -70,19 +75,27 @@ export default function ReviewPage() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		if(newComment.length > 0) {
+			setSubmitError("Sorry, comments must contain information...")
+			return
+		}
+		setSubmitError(false)
 		const body = { username: user.username, body: newComment };
 		const tempComment = {
 			author: user.username,
 			body: newComment,
 			votes: 0,
 			created_at: Date(),
+			comment_id: Date()
 		};
 
 		setComments((currComments) => {
 			return [tempComment, ...currComments];
 		});
-		postCommentByReview_id(review.review_id, body).then(()=> {setCommentError(false) }).catch(() => {
-			setCommentError(true)
+
+		postCommentByReview_id(review.review_id, body).catch(() => {
+			setSubmitError("Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!")
+
 			setComments((currComments) => {
 				const tempComments = [...currComments];
 				tempComments.shift();
@@ -161,6 +174,7 @@ export default function ReviewPage() {
 						to comment on reviews!
 					</h3>
 				)}
+				{deleteError && <h3 className="patch-error">Sorry comment not deleted, please refresh and try again!</h3>}
 				{!comments ? (
 					<h2>Comments Loading...!</h2>
 				) : (
@@ -171,6 +185,8 @@ export default function ReviewPage() {
 									key={comment.comment_id}
 									comment={comment}
 									setComments={setComments}
+									deleteError={deleteError}
+									setDeleteError={setDeleteError}
 								/>
 							);
 						})}

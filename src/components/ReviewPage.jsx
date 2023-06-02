@@ -26,7 +26,6 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
-	console.log(comments);
 
 	const handleReviewUpVoteClick = () => {
 		if (review.owner !== user.username) {

@@ -13,7 +13,7 @@ export default function CategoriesPage() {
     return(<main>
 
         {categories ? categories.map(category => {
-            return <Link to={`/?category=${category.slug}`} className="link"><h2>{category.slug}</h2></Link>
+            return <Link key={category.slug} to={`/?category=${category.slug}`} className="link"><h2>{category.slug}</h2></Link>
         }): <h2>Loading Categories...</h2>}
         </main>
     )

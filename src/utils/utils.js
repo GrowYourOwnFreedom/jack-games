@@ -4,8 +4,8 @@ const jacksGamesApi = axios.create({
 	baseURL: "https://jack-games.onrender.com/",
 });
 
-export const fetchReviews = ({categoriesQuery}) => {
-	return jacksGamesApi.get("/api/reviews",{params:{category:categoriesQuery}}).then(({data:{reviews}}) => {
+export const fetchReviews = (params) => {
+	return jacksGamesApi.get("/api/reviews",params).then(({data:{reviews}}) => {
 		return reviews;
 	});
 };

@@ -123,7 +123,7 @@ export default function CommentCard({ deleteError, setDeleteError ,setComments, 
 					again!
 				</h3>
 			)}
-									<span>{created_at}</span>
+									<span>{new Date(created_at).toUTCString()}</span>
 								</li>
 							);
 						

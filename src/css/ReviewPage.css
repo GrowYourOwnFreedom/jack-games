@@ -20,7 +20,7 @@ button:hover {
 	cursor: pointer;
 }
 .display-img {
-	width: 500px;
+	width: 100%;
 }
 .review-info {
 	display: flex;
@@ -56,4 +56,8 @@ button:hover {
 }
 .patch-error {
 	color: rgb(190, 58, 58);
+}
+.post-error {
+	color: rgb(190, 58, 58);
+
 }

@@ -4,19 +4,23 @@
 	border-style: solid;
 	border-radius: 20px;
 	display: flex;
+	flex-direction: column;
 }
 .reviews-list {
 	border-color: white;
 	border-width: 4px;
 	border-style: solid;
 	border-radius: 20px;
+	width: 100%;
 }
 ul {
 	list-style: none;
 	padding: 0;
 }
-img {
-	width: 200px;
+.review-card-image {
+	min-width: 150px;
+	height: auto;
+	border-radius: 20px;
 }
 .reviews-info-buttons {
 	display: flex;
@@ -30,6 +34,11 @@ img {
 	
 }
 .review-card:hover {
-	background-color:rgb(79, 79, 79);
+	background-color:rgb(45, 45, 45);
 	cursor: pointer;
 }
+ @media (min-width: 768px ) {
+	.review-card {
+		flex-direction: row;
+	}
+ }

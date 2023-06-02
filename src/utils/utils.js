@@ -36,8 +36,14 @@ export const patchCommentVotesByComment_id = (id,num) => {
 
 }
 
+
 export const fetchCategories = () => {
 	return jacksGamesApi.get('/api/categories').then(({data:{categories}})=> {
 		return categories
 	} )
 }
+
+export const postCommentByReview_id = (id,body) => {
+	return jacksGamesApi.post(`/api/reviews/${id}/comments`,body)
+}
+

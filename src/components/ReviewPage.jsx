@@ -72,36 +72,40 @@ export default function ReviewPage() {
 	const handleChange = (event) => {
 		setNewComment(event.target.value);
 	};
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(!newComment) {
+		if(newComment){
+			console.log(newComment);
+			setSubmitError(false)
+			const body = { username: user.username, body: newComment };
+			const tempComment = {
+				author: user.username,
+				body: newComment,
+				votes: 0,
+				created_at: Date(),
+				comment_id: Date()
+			};
+			
+			setComments((currComments) => {
+				return [tempComment, ...currComments];
+			});
+			
+			postCommentByReview_id(review.review_id, body).catch(() => {
+				setSubmitError("Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!")
+				
+				setComments((currComments) => {
+					const tempComments = [...currComments];
+					tempComments.shift();
+					return tempComments;
+				});
+			});
+		}
+		else {
 			console.log("in submit prevention");
 			setSubmitError("Sorry, comments must contain information...")
-			return
+			
 		}
-		setSubmitError(false)
-		const body = { username: user.username, body: newComment };
-		const tempComment = {
-			author: user.username,
-			body: newComment,
-			votes: 0,
-			created_at: Date(),
-			comment_id: Date()
-		};
-
-		setComments((currComments) => {
-			return [tempComment, ...currComments];
-		});
-
-		postCommentByReview_id(review.review_id, body).catch(() => {
-			setSubmitError("Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!")
-
-			setComments((currComments) => {
-				const tempComments = [...currComments];
-				tempComments.shift();
-				return tempComments;
-			});
-		});
 	};
 
 	return !review ? (

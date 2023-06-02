@@ -20,6 +20,7 @@ export default function ReviewPage() {
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
 	const [ deleteError, setDeleteError ] = useState(false)
+	const [ submitError, setSubmitError ] = useState(false)
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -70,6 +71,11 @@ export default function ReviewPage() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		if(newComment.length > 0) {
+			setSubmitError("Sorry, comments must contain information...")
+			return
+		}
+		setSubmitError(false)
 		const body = { username: user.username, body: newComment };
 		const tempComment = {
 			author: user.username,
@@ -83,6 +89,7 @@ export default function ReviewPage() {
 			return [tempComment, ...currComments];
 		});
 		postCommentByReview_id(review.review_id, body).catch(() => {
+			setSubmitError("Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!")
 			setComments((currComments) => {
 				const tempComments = [...currComments];
 				tempComments.shift();

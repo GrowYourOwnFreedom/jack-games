@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import ReviewsList from "./components/ReviewsList";
 import ReviewPage from "./components/ReviewPage";
 import LoginPage from "./components/LoginPage";
+import CategoriesPage from "./components/CategoriesPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 					<Route path="/" element ={<ReviewsList/>}/>
 					<Route path="/:review_id" element ={<ReviewPage/>}/>
 					<Route path="/login" element ={<LoginPage/>}/>
+					<Route path="/categories" element ={<CategoriesPage/>}/>
 
 				</Routes>
 			</section>

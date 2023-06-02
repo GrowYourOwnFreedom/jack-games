@@ -77,6 +77,7 @@ export default function ReviewPage() {
 		event.preventDefault();
 		if(newComment){
 			console.log(newComment);
+			console.log(submitError);
 			setSubmitError(false)
 			const body = { username: user.username, body: newComment };
 			const tempComment = {
@@ -103,6 +104,7 @@ export default function ReviewPage() {
 		}
 		else {
 			console.log("in submit prevention");
+			console.log(submitError);
 			setSubmitError("Sorry, comments must contain information...")
 			
 		}

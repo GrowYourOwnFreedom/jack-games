@@ -44,6 +44,7 @@ export const fetchCategories = () => {
 }
 
 export const postCommentByReview_id = (id,body) => {
+	console.log("in post");
 	return jacksGamesApi.post(`/api/reviews/${id}/comments`,body)
 }
 

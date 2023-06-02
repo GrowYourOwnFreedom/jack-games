@@ -74,7 +74,7 @@ export default function ReviewPage() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(newComment.length === 0) {
+		if(!newComment) {
 			setSubmitError("Sorry, comments must contain information...")
 			return
 		}

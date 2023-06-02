@@ -19,6 +19,7 @@ export default function ReviewPage() {
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
+	const [ commentError, setCommentError ] = useState(false)
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -80,7 +81,8 @@ export default function ReviewPage() {
 		setComments((currComments) => {
 			return [tempComment, ...currComments];
 		});
-		postCommentByReview_id(review.review_id, body).catch(() => {
+		postCommentByReview_id(review.review_id, body).then(()=> {setCommentError(false) }).catch(() => {
+			setCommentError(true)
 			setComments((currComments) => {
 				const tempComments = [...currComments];
 				tempComments.shift();
@@ -136,6 +138,7 @@ export default function ReviewPage() {
 			)}
 			<section className="comment-display">
 				<h2 className="comment-display-title">Comments!</h2>
+				{commentError && <h3 className="post-error">Sorry your comment was not posted, please refresh and try again!</h3>}
 				{user ? (
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="comment-box"> New Comment:</label>

@@ -112,7 +112,7 @@ export default function CommentCard({setComments, comment: { comment_id, body, a
 					again!
 				</h3>
 			)}
-									<span>{created_at}</span>
+									<span>{new Date(created_at).toUTCString()}</span>
 								</li>
 							);
 						

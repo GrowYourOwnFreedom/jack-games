@@ -75,6 +75,7 @@ export default function ReviewPage() {
 			body: newComment,
 			votes: 0,
 			created_at: Date(),
+			comment_id: Date()
 		};
 
 		setComments((currComments) => {

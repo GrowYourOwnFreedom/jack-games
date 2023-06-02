@@ -7,17 +7,20 @@ import ReviewCard from "./ReviewCard";
 export default function ReviewsList() {
 	const [reviews, setReviews] = useState(false);
 	const [params, setParams] = useSearchParams();
-	const categoriesQuery = params.get("category") ?? undefined;
+	const categoriesQuery = params.get("category")
+	const sortQuery = params.get("sort_by")
+	const orderQuery = params.get("order")
 
 	useEffect(() => {
 		fetchReviews({ categoriesQuery }).then((reviews) => {
 			setReviews(reviews);
 		});
-	}, [categoriesQuery]);
+	}, [categoriesQuery,sortQuery,orderQuery]);
 
 	return (
 		<main className="reviews-list">
 			<h2>Reviews</h2>
+			<select name="" id=""></select>
 			{!reviews ? (
 				<h1>Loading....</h1>
 			) : (

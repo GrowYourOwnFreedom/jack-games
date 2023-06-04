@@ -20,10 +20,8 @@ export default function ReviewPage() {
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
 
-	const [ deleteError, setDeleteError ] = useState(false)
-	const [ submitError, setSubmitError ] = useState(false)
-
-
+	const [deleteError, setDeleteError] = useState(false);
+	const [submitError, setSubmitError] = useState(false);
 
 	useEffect(() => {
 		fetchReviewByReview_id(review_id).then((review) => {
@@ -75,38 +73,38 @@ export default function ReviewPage() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(newComment){
+		if (newComment) {
 			console.log(newComment);
 			console.log(submitError);
-			setSubmitError(false)
+			setSubmitError(false);
 			const body = { username: user.username, body: newComment };
 			const tempComment = {
 				author: user.username,
 				body: newComment,
 				votes: 0,
 				created_at: Date(),
-				comment_id: Date()
+				comment_id: Date(),
 			};
-			
+
 			setComments((currComments) => {
 				return [tempComment, ...currComments];
 			});
-			
+
 			postCommentByReview_id(review.review_id, body).catch(() => {
-				setSubmitError("Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!")
-				
+				setSubmitError(
+					"Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!"
+				);
+
 				setComments((currComments) => {
 					const tempComments = [...currComments];
 					tempComments.shift();
 					return tempComments;
 				});
 			});
-		}
-		else {
+		} else {
 			console.log("in submit prevention");
 			console.log(submitError);
-			setSubmitError("Sorry, comments must contain information...")
-			
+			setSubmitError("Sorry, comments must contain information...");
 		}
 	};
 
@@ -127,26 +125,26 @@ export default function ReviewPage() {
 				</div>
 				<div className="side-buttons">
 					<span className="username">@{review.owner} </span>
-					<span> votes:{review.votes} </span>
+					<span className="votes"> votes:{review.votes} </span>
 					{user.username !== review.owner && user && (
-						<button onClick={handleReviewUpVoteClick}>
+						<button className="upvote" onClick={handleReviewUpVoteClick}>
 							upVote!
 						</button>
 					)}
 					{user.username !== review.owner && user && (
-						<button onClick={handleReviewDownVoteClick}>
+						<button className="downvote" onClick={handleReviewDownVoteClick}>
 							downVote :(
 						</button>
 					)}
 				</div>
 			</section>
 			{!user && (
-				<h3 className="username">
+				<h3 className="login-prompt">
 					Please{" "}
 					<Link className="link" to={"/login"}>
 						log in
-					</Link>
-					to vote on reviews!
+					</Link>{" "}
+					to vote or comment!
 				</h3>
 			)}
 			{patchError && (
@@ -155,12 +153,12 @@ export default function ReviewPage() {
 					again!
 				</h3>
 			)}
+			<h2 className="comment-display-title">Comments!</h2>
 			<section className="comment-display">
-				<h2 className="comment-display-title">Comments!</h2>
 				{submitError && <h3 className="post-error">{submitError}</h3>}
-				{user ? (
-					<form onSubmit={handleSubmit}>
-						<label htmlFor="comment-box"> New Comment:</label>
+				{user && (
+					<form className="comment-form" onSubmit={handleSubmit}>
+						{/* <label htmlFor="comment-box"> New Comment:</label> */}
 						<textarea
 							onChange={handleChange}
 							value={newComment}
@@ -168,19 +166,16 @@ export default function ReviewPage() {
 							id="comment-box"
 							cols="30"
 							rows="10"
+							placeholder="Interesting text..."
 						></textarea>
-						<button>submit</button>
+						<button>submit new comment</button>
 					</form>
-				) : (
-					<h3 className="username">
-						Please{" "}
-						<Link className="link" to={"/login"}>
-							log in
-						</Link>
-						to comment on reviews!
+				)}
+				{deleteError && (
+					<h3 className="patch-error">
+						Sorry comment not deleted, please refresh and try again!
 					</h3>
 				)}
-				{deleteError && <h3 className="patch-error">Sorry comment not deleted, please refresh and try again!</h3>}
 				{!comments ? (
 					<h2>Comments Loading...!</h2>
 				) : (

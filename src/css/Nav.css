@@ -6,8 +6,18 @@
     0px;
     background-color: #3f3f3f;
     font-size: 20px;
+    /* padding-bottom:  2rem; */
+    z-index: 1;
 }
 .navBar button {
-    font-size: 20px;
+    font-size: 1rem;
+    background-color: #6d6d6d;
+    padding-top: 0.3rem;
 
+
+}
+.link-background {
+	background-color:rgb(95, 95, 95);
+  border-radius: 1rem;
+  padding: 1rem;
 }

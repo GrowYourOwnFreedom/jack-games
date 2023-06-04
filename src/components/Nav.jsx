@@ -11,9 +11,16 @@ export default function Nav() {
 	}
 	return (
 		<nav className="navBar">
-			<Link className="link" to="/"> Home </Link>
+			<Link className="link" to="/"><div className="link-backgound">Home</div>  </Link>
 			{user && <button onClick={handleClick}>sign out</button> }
-			<Link className="link" to="/categories"> Review Categories </Link>
+			<Link className="link" to="/categories"> Game Categories </Link>
+			{user ? (
+				<img className="avatar" src={user.avatar_url} alt="" />
+			) : (
+				<Link className="link" to="/login">
+					Login{" "}
+				</Link>
+			)}
 		</nav>
 	);
 }

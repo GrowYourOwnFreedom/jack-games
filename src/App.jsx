@@ -15,8 +15,8 @@ function App() {
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			<section className="app">
-				<Header/>
 				<Nav/>
+				<Header/>
 				<Routes>
 					<Route path="/" element ={<ReviewsList/>}/>
 					<Route path="/:review_id" element ={<ReviewPage/>}/>

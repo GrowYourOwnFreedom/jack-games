@@ -23,33 +23,44 @@ export default function ReviewsList() {
 		});
 	}, [categoriesQuery, sortQuery, orderQuery]);
 
-	const handleChange = (param,value) => {
+	const handleChange = (param, value) => {
 		const newParams = new URLSearchParams(params);
-		newParams.set(param,value)
-		setParams(newParams)
-	}
+		newParams.set(param, value);
+		setParams(newParams);
+	};
 
 	return (
 		<main className="reviews-list">
 			<h2>Reviews</h2>
-			<label htmlFor="sort-by">sort by</label>
-			<select
-				onChange={(event) => {
-					handleChange("sort_by", event.target.value);
-				}}
-				name="sort_by"
-				id="sort-by"
-			>
-				<option value="created_at">created_at</option>
-				<option value="votes">votes</option>
-				<option value="comment_count">comment_count</option>
-			</select>
-			<label htmlFor="order">order</label>
-			<select onChange={(event)=> {handleChange("order", event.target.value)}} name="order" id="order">
-				<option value="ASC">ascending</option>
-				<option value="DESC">descending</option>
-
-			</select>
+			<section className="sort-area">
+				<div>
+					<label htmlFor="sort-by">sort by</label>
+					<select
+						onChange={(event) => {
+							handleChange("sort_by", event.target.value);
+						}}
+						name="sort_by"
+						id="sort-by"
+					>
+						<option value="created_at">created_at</option>
+						<option value="votes">votes</option>
+						<option value="comment_count">comment_count</option>
+					</select>
+				</div>
+				<div>
+					<label htmlFor="order">order</label>
+					<select
+						onChange={(event) => {
+							handleChange("order", event.target.value);
+						}}
+						name="order"
+						id="order"
+					>
+						<option value="ASC">ascending</option>
+						<option value="DESC">descending</option>
+					</select>
+				</div>
+			</section>
 			{!reviews ? (
 				<h1>Loading....</h1>
 			) : (

@@ -19,7 +19,7 @@ export default function ReviewCard({review:{ review_id, review_img_url, title, o
             <img className="review-card-image" src={review_img_url} alt="" />
             <div className="reviews-info">
                 <div>
-                    <h3>{title}</h3>
+                    <h3 className="review-title">{title}</h3>
                 </div>
                 <div className="reviews-info-buttons">
                     <span className="username">
@@ -30,10 +30,10 @@ export default function ReviewCard({review:{ review_id, review_img_url, title, o
                             className="link"
                             to={`/?category=${category}`}
                         >
-                            category: {category}
+                            {category}
                         </Link>
                     </span>
-                    <span>votes: {votes}</span>
+                    <span className="votes">votes: {votes}</span>
                     <span>
                         comments:{comment_count}
                     </span>

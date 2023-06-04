@@ -1,16 +1,19 @@
 .review-card {
 	border-color: white;
-	border-width: 4px;
+	border-width: 0.2rem;
 	border-style: solid;
-	border-radius: 20px;
+	border-radius: 3rem;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	background-color:rgb(75, 75, 75);
 }
 .reviews-list {
-	border-color: white;
+	/* border-color: white;
 	border-width: 4px;
 	border-style: solid;
-	border-radius: 20px;
+	border-radius: 20px; */
 	width: 100%;
 }
 ul {
@@ -20,7 +23,13 @@ ul {
 .review-card-image {
 	min-width: 150px;
 	height: auto;
-	border-radius: 20px;
+	border-radius: 2rem;
+}
+.review-title{
+	font-size: 1.5rem;
+	color: rgb(239, 239, 239);
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 .reviews-info-buttons {
 	display: flex;
@@ -33,12 +42,49 @@ ul {
 	justify-content: space-evenly;
 	
 }
+.sort-area{
+	display: flex;
+	flex-direction: column;
+}
+.upvote {
+font-size: .7rem;
+
+	background-color: rgb(85, 175, 85);
+}
+.upvote:hover {
+	
+	background-color: rgb(13, 128, 13);
+}
+.downvote {
+	font-size: .7rem;
+
+	background-color: rgb(184, 88, 88);
+}
+.downvote:hover {
+	background-color: rgb(163, 44, 44);
+}
+.delete {
+	font-size: .7rem;
+
+	background-color: rgb(197, 165, 51);
+}
+.delete:hover {
+	background-color: rgb(165, 129, 0);
+}
+.votes{
+	font-weight: 800;
+	color: rgb(234, 234, 234);
+}
 .review-card:hover {
-	background-color:rgb(45, 45, 45);
+	background-color: #393939;
 	cursor: pointer;
 }
  @media (min-width: 768px ) {
 	.review-card {
 		flex-direction: row;
+	}
+	.sort-area {
+		flex-direction: row;
+		justify-content: center;
 	}
  }

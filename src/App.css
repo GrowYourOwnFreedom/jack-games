@@ -37,4 +37,5 @@ select, input, button {
 	margin-left: 1rem;
 	margin-right: 1rem;
   margin-bottom: 2rem;
+  color: rgb(46, 46, 46);
 }

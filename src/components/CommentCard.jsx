@@ -14,6 +14,7 @@ export default function CommentCard({
 }) {
 	const { user } = useContext(UserContext);
 	const [patchError, setPatchError] = useState(false);
+	const [commentIndex, setCommentIndex] = useState(null);
 
 	const handleCommentUpVoteClick = () => {
 		if (author !== user.username) {
@@ -79,15 +80,28 @@ export default function CommentCard({
 		}
 	};
 	const handleCommentDelete = () => {
+		let deletedIndex = null;
 		setDeleteError(false);
 		setComments((currComments) => {
-			const newComments = currComments.filter((comment) => {
+			const newComments = currComments.filter((comment, index) => {
+				if (comment.comment_id === comment_id) {
+					deletedIndex = index;
+				}
 				return comment.comment_id !== comment_id;
 			});
 			return newComments;
 		});
 		deleteCommentByComment_id(comment_id).catch(() => {
-			setDeleteError(true);
+			setComments((currComments) => {
+				console.log(commentIndex);
+
+				const newComments = [...currComments];
+				newComments.splice(deletedIndex, 0, {
+					error: "error",
+					comment_id,
+				});
+				return newComments;
+			});
 		});
 	};
 	return (

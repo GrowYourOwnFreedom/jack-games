@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: #3f3f3f;
-    border: dashed 0.5rem rgb(218, 218, 218);
+    border: dashed 0.3rem rgb(218, 218, 218);
     border-radius: 2rem;
-    width: 100%;
+    /* width: 100%; */
 
 }
 .page-title {

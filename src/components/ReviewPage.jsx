@@ -19,7 +19,6 @@ export default function ReviewPage() {
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
-
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
 
@@ -127,12 +126,18 @@ export default function ReviewPage() {
 					<span className="username">@{review.owner} </span>
 					<span className="votes"> votes:{review.votes} </span>
 					{user.username !== review.owner && user && (
-						<button className="upvote" onClick={handleReviewUpVoteClick}>
+						<button
+							className="upvote"
+							onClick={handleReviewUpVoteClick}
+						>
 							upVote!
 						</button>
 					)}
 					{user.username !== review.owner && user && (
-						<button className="downvote" onClick={handleReviewDownVoteClick}>
+						<button
+							className="downvote"
+							onClick={handleReviewDownVoteClick}
+						>
 							downVote :(
 						</button>
 					)}
@@ -171,17 +176,18 @@ export default function ReviewPage() {
 						<button>submit new comment</button>
 					</form>
 				)}
-				{deleteError && (
-					<h3 className="patch-error">
-						Sorry comment not deleted, please refresh and try again!
-					</h3>
-				)}
 				{!comments ? (
 					<h2>Comments Loading...!</h2>
 				) : (
 					<ul>
-						{comments.map((comment) => {
-							return (
+						{comments.map((comment, index) => {
+							return comment.error === "error" ? (
+								<h3 key={comment.comment_id}
+								 className="patch-error">
+									Sorry comment not deleted, please refresh
+									and try again!
+								</h3>
+							) : (
 								<CommentCard
 									key={comment.comment_id}
 									comment={comment}

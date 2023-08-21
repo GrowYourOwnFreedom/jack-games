@@ -14,7 +14,6 @@ export default function CommentCard({
 }) {
 	const { user } = useContext(UserContext);
 	const [patchError, setPatchError] = useState(false);
-	const [commentIndex, setCommentIndex] = useState(null);
 
 	const handleCommentUpVoteClick = () => {
 		if (author !== user.username) {
@@ -93,8 +92,6 @@ export default function CommentCard({
 		});
 		deleteCommentByComment_id(comment_id).catch(() => {
 			setComments((currComments) => {
-				console.log(commentIndex);
-
 				const newComments = [...currComments];
 				newComments.splice(deletedIndex, 0, {
 					error: "error",

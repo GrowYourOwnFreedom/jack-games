@@ -7,16 +7,20 @@ import { useNavigate } from "react-router-dom";
 export default function LoginPage(){
     const {user, setUser} = useContext(UserContext)
     const [usernameInput, setUsernameInput ] = useState('')
+    const [passwordInput, setPasswordInput ] = useState('')
     const navigate = useNavigate();
 
-    const handleChange = (event) => {
+    const handleUsernameChange = (event) => {
         setUsernameInput(event.target.value)
+    }
+    const handlePasswordChange = (event) => {
+        setPasswordInput(event.target.value)
     }
     const handleSubmit = (event) => {
         event.preventDefault()
 
-    if(usernameInput.length>0){
-        fetchUserByUsername(usernameInput).then(user => {
+    if( usernameInput.length > 0 && passwordInput.length >= 8 ){
+        fetchUserByUsername(usernameInput, passwordInput).then(user => {
             setUser(user)
             navigate(-1)
         })
@@ -27,7 +31,9 @@ export default function LoginPage(){
         <form onSubmit={handleSubmit}>
             <h2>Login</h2>
             <label htmlFor="username-input">username:</label>
-            <input id="username-input" type="text" onChange={handleChange} value={usernameInput} />
+            <input id="username-input" type="username" onChange={handleUsernameChange} value={usernameInput} />
+            <label htmlFor="password-input">password:</label>
+            <input id="password-input" type="password" onChange={handlePasswordChange} value={passwordInput} />
             <button>submit</button>
         </form>
 

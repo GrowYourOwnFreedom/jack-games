@@ -10,6 +10,7 @@ export default function ReviewsList() {
 	const categoriesQuery = params.get("category");
 	const sortQuery = params.get("sort_by");
 	const orderQuery = params.get("order");
+	const [deleteError, setDeleteError] = useState(false);
 
 	useEffect(() => {
 		fetchReviews({
@@ -62,14 +63,21 @@ export default function ReviewsList() {
 				</div>
 			</section>
 			{!reviews ? (
-				<h1>Loading....</h1>
+				<h1>reviews loading....</h1>
 			) : (
 				<ul>
 					{reviews.map((review) => {
-						return (
+						return review.error === "error" ? (
+							<h3 key={review.review_id} className="patch-error">
+								Sorry review not deleted, please refresh and try
+								again!
+							</h3>
+						) : (
 							<ReviewCard
 								key={review.review_id}
 								review={review}
+								setReviews={setReviews}
+								setDeleteError={setDeleteError}
 							/>
 						);
 					})}

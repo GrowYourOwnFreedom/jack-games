@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 
 export default function CommentCard({
-	deleteError,
+	
 	setDeleteError,
 	setComments,
 	comment: { comment_id, body, author, votes, created_at },

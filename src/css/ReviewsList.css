@@ -25,22 +25,29 @@ ul {
 	height: auto;
 	border-radius: 2rem;
 }
-.review-title{
-	font-size: 1.5rem;
-	color: rgb(239, 239, 239);
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-.reviews-info-buttons {
-	display: flex;
-	justify-content: space-evenly;
-}
 .reviews-info{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	
+}
+.review-title-line{
+	display: flex;
+}
+.review-title{
+	font-size: 1.5rem;
+	color: rgb(239, 239, 239);
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.delete-review{
+	background-color: rgb(159, 34, 34);
+	font-size:larger
+}
+.reviews-info-buttons {
+	display: flex;
+	justify-content: space-evenly;
 }
 .sort-area{
 	display: flex;

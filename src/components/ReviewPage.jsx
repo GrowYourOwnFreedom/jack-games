@@ -192,7 +192,6 @@ export default function ReviewPage() {
 									key={comment.comment_id}
 									comment={comment}
 									setComments={setComments}
-									deleteError={deleteError}
 									setDeleteError={setDeleteError}
 								/>
 							);

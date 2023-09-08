@@ -8,6 +8,7 @@ import ReviewsList from "./components/ReviewsList";
 import ReviewPage from "./components/ReviewPage";
 import LoginPage from "./components/LoginPage";
 import CategoriesPage from "./components/CategoriesPage";
+import SignUpPage from "./components/SignUpPage";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 					<Route path="/:review_id" element ={<ReviewPage/>}/>
 					<Route path="/login" element ={<LoginPage/>}/>
 					<Route path="/categories" element ={<CategoriesPage/>}/>
+					<Route path="/signup" element ={<SignUpPage/>}/>
 
 				</Routes>
 			</section>

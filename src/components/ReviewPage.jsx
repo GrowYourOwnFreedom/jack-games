@@ -19,6 +19,7 @@ export default function ReviewPage() {
 	const [comments, setComments] = useState(false);
 	const [patchError, setPatchError] = useState(false);
 	const [newComment, setNewComment] = useState("");
+	const [typedCommentMemory, setTypedCommentMemory] = useState("");
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
 
@@ -30,6 +31,14 @@ export default function ReviewPage() {
 			});
 		});
 	}, []);
+
+	useEffect(() => {
+		if (submitError && typedCommentMemory) {
+			setNewComment(typedCommentMemory);
+			console.log(typedCommentMemory);
+
+		}
+	}, [typedCommentMemory, submitError]);
 
 	const handleReviewUpVoteClick = () => {
 		if (review.owner !== user.username) {
@@ -73,8 +82,6 @@ export default function ReviewPage() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (newComment) {
-			console.log(newComment);
-			console.log(submitError);
 			setSubmitError(false);
 			const body = { username: user.username, body: newComment };
 			const tempComment = {
@@ -83,17 +90,18 @@ export default function ReviewPage() {
 				votes: 0,
 				created_at: Date(),
 				comment_id: Date(),
+				temp: true,
 			};
+			setTypedCommentMemory(newComment);
+			setNewComment("");
 
 			setComments((currComments) => {
 				return [tempComment, ...currComments];
 			});
-
 			postCommentByReview_id(review.review_id, body).catch(() => {
 				setSubmitError(
 					"Sorry, comment not submitted. /n Please check your connection,  and/or refresh your browser and try again!"
 				);
-
 				setComments((currComments) => {
 					const tempComments = [...currComments];
 					tempComments.shift();
@@ -101,8 +109,6 @@ export default function ReviewPage() {
 				});
 			});
 		} else {
-			console.log("in submit prevention");
-			console.log(submitError);
 			setSubmitError("Sorry, comments must contain information...");
 		}
 	};
@@ -182,8 +188,10 @@ export default function ReviewPage() {
 					<ul>
 						{comments.map((comment, index) => {
 							return comment.error === "error" ? (
-								<h3 key={comment.comment_id}
-								 className="patch-error">
+								<h3
+									key={comment.comment_id}
+									className="patch-error"
+								>
 									Sorry comment not deleted, please refresh
 									and try again!
 								</h3>

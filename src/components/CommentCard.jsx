@@ -10,7 +10,7 @@ export default function CommentCard({
 	
 	setDeleteError,
 	setComments,
-	comment: { comment_id, body, author, votes, created_at },
+	comment: { comment_id, body, author, votes, created_at, temp },
 }) {
 	const { user } = useContext(UserContext);
 	const [patchError, setPatchError] = useState(false);
@@ -125,7 +125,7 @@ export default function CommentCard({
 							downVote :(
 						</button>
 					)}
-					{user.username === author && (
+					{(user.username === author && !temp ) && (
 						<button
 							className="delete"
 							onClick={handleCommentDelete}

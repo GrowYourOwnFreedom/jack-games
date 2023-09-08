@@ -66,3 +66,10 @@ export const deleteReviewByReview_id = (id, username) => {
 	const body = { username };
 	return jacksGamesApi.post(`/api/reviews/${id}`, body);
 };
+
+export const postUser = (body) => {
+	return jacksGamesApi.post('/api/users', body).then(({ data: { user } }) => {
+		return user;
+	});
+
+}

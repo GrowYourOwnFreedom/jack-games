@@ -14,6 +14,9 @@ export default function Nav() {
 			<Link className="link" to="/">
 				<div className="link-backgound">Home</div>{" "}
 			</Link>
+			
+
+			{user && <Link className="link" to='/review' >{""}Leave A Review!{""}</Link>}
 			{user && <button onClick={handleClick}>sign out</button>}
 			<Link className="link" to="/categories">
 				{" "}

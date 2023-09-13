@@ -9,6 +9,7 @@ import ReviewPage from "./components/ReviewPage";
 import LoginPage from "./components/LoginPage";
 import CategoriesPage from "./components/CategoriesPage";
 import SignUpPage from "./components/SignUpPage";
+import PostReviewForm from "./components/PostReviewForm";
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
 					<Route path="/login" element ={<LoginPage/>}/>
 					<Route path="/categories" element ={<CategoriesPage/>}/>
 					<Route path="/signup" element ={<SignUpPage/>}/>
+					<Route path="/review" element ={<PostReviewForm/>}/>
+					
 
 				</Routes>
 			</section>

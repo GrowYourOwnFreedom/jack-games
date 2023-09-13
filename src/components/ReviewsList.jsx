@@ -11,6 +11,7 @@ export default function ReviewsList() {
 	const sortQuery = params.get("sort_by");
 	const orderQuery = params.get("order");
 	const [deleteError, setDeleteError] = useState(false);
+	
 
 	useEffect(() => {
 		fetchReviews({

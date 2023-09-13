@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const beUrl = "https://jack-games.onrender.com/";
-// const beUrl = "http://localhost:9090";
+// const beUrl = "https://jack-games.onrender.com/";
+const beUrl = "http://localhost:9090";
 
 const jacksGamesApi = axios.create({
 	baseURL: beUrl,
@@ -72,4 +72,10 @@ export const postUser = (body) => {
 		return user;
 	});
 
+}
+
+export const postReview =(body) => {
+	return jacksGamesApi.post('/api/reviews', body).then(({data: { review }}) => {
+		return review
+	})
 }
